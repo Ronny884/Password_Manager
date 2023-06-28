@@ -9,9 +9,7 @@ class Data():
     def create_new_db(self, name):
         db = QtSql.QSqlDatabase.addDatabase('QSQLITE')
         db.setDatabaseName(f'{os.getcwd()}/Database/{name}.db')
-
-        if not db.open():
-            pass
+        db.open()
 
         query = QtSql.QSqlQuery()
         query.exec('''CREATE TABLE IF NOT EXISTS notes (
@@ -30,9 +28,7 @@ class Data():
     def add_new_note_to_target_db(self, db_name, query_values):
         db = QtSql.QSqlDatabase.addDatabase('QSQLITE')
         db.setDatabaseName(f'{os.getcwd()}/Database/{db_name}.db')
-
-        if not db.open():
-            pass
+        db.open()
 
         query = QtSql.QSqlQuery()
         query.prepare('''
@@ -84,9 +80,7 @@ class Data():
     def select_parameter_for_copy(self, db_name, note_name, parameter_for_copy):
         db = QtSql.QSqlDatabase.addDatabase('QSQLITE')
         db.setDatabaseName(f'{os.getcwd()}/Database/{db_name}.db')
-
-        if not db.open():
-            print("No")
+        db.open()
 
         def select_password():
             global result
@@ -183,9 +177,7 @@ class Data():
     def delete_note(self, db_name, note_name):
         db = QtSql.QSqlDatabase.addDatabase('QSQLITE')
         db.setDatabaseName(f'{os.getcwd()}/Database/{db_name}.db')
-
-        if not db.open():
-            print("No")
+        db.open()
 
         query = QtSql.QSqlQuery()
         query.exec('DELETE FROM notes WHERE name = ?')
@@ -196,9 +188,7 @@ class Data():
         global result
         db = QtSql.QSqlDatabase.addDatabase('QSQLITE')
         db.setDatabaseName(f'{os.getcwd()}/Database/{db_name}.db')
-
-        if not db.open():
-            print("No")
+        db.open()
 
         query = QtSql.QSqlQuery()
         query.exec('SELECT name FROM notes WHERE id = ?')
@@ -211,9 +201,7 @@ class Data():
     def update_note(self, db_name, query_values):
         db = QtSql.QSqlDatabase.addDatabase('QSQLITE')
         db.setDatabaseName(f'{os.getcwd()}/Database/{db_name}.db')
-
-        if not db.open():
-            pass
+        db.open()
 
         query = QtSql.QSqlQuery()
         query.prepare('''
